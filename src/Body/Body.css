@@ -4,9 +4,10 @@
   flex-wrap: wrap;
   width: auto;
   max-width: 100vw;
-  height: 85vh;
+  height: 100vh;
   padding: 1vh;
   /* background-color: #100f0f; */
+  
   overflow: auto;
 }
 

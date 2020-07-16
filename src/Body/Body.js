@@ -12,7 +12,6 @@ const Body = props => {
     return (
       <section className="reservation-container">
         { reservationCards } 
-        <p>Hi</p>
       </section>
     )
   } else {
