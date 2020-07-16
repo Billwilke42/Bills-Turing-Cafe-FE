@@ -1,4 +1,4 @@
-const url = 'git clone https://github.com/turingschool-examples/turing-cafe-api.git'
+const url = 'http://localhost:3001/api/v1'
 
 const getReservations = () => {
   return fetch(`${url}/reservations`)
