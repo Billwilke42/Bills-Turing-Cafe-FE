@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import { getReservations } from '../apiCalls'
 
 class App extends Component {
   render() {
