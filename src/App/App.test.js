@@ -47,3 +47,25 @@ it('should change when things are added to the inputs', async () =>  {
   expect(date).toBeInTheDocument()
   expect(time).toBeInTheDocument()
 })
+
+it('should add a reservation', async () =>  {
+  const { getByPlaceholderText, getByDisplayValue, getByRole, getByText } = render(<App></App>)
+
+  const nameInput = await waitFor(() => getByPlaceholderText('Name'))
+  const dateInput = await waitFor(() => getByPlaceholderText('Month/Day'))
+  const timeInput = await waitFor(() => getByPlaceholderText('Time'))
+  const submitBtn = await waitFor(() => getByRole('button', {name: 'Submit'}))
+
+  fireEvent.change(nameInput, {target: {value: 'Bill'}})
+  fireEvent.change(dateInput, {target: {value: '10/19'}} )
+  fireEvent.change(timeInput, {target: {value: '6:43'}} )
+  fireEvent.click(submitBtn)
+
+  const name = await waitFor(() => getByText('Bill'))
+  const date = await waitFor(() => getByText('10/19'))
+  const time = await waitFor(() => getByText('6:43'))
+
+  expect(name).toBeInTheDocument()
+  expect(date).toBeInTheDocument()
+  expect(time).toBeInTheDocument()
+})
