@@ -1,0 +1,22 @@
+.reservation-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  width: auto;
+  max-width: 100vw;
+  height: 85vh;
+  padding: 1vh;
+  /* background-color: #100f0f; */
+  overflow: auto;
+}
+
+.reservation-card {
+  background-color: white;
+  border: 1px solid black;
+  margin: auto;
+  width: 240px;
+  height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
