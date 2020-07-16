@@ -7,11 +7,30 @@ class Form extends Component {
       name: '',
       date: '',
       time: '',
-      numberOfGuests: ''
+      numberOfGuests: 0,
+      // reservations: this.props.reservations
     }
   }
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value})
+  }
+
+  handleSubmit = (event) => {
+    event.preventDefault()
+    const reservation = {
+      date: this.state.date,
+      id: Date.now(),
+      name: this.state.name,
+      number: parseInt(this.state.numberOfGuests),
+      time: this.state.time
+    }
+    const reservationsCopy = this.props.reservations
+    reservationsCopy.push(reservation)
+    this.props.renderSubmit(reservationsCopy)
+  }
+
+  componentDidMount() {
+    this.setState({reservations: this.props.reservations})
   }
 
   render() { 
@@ -29,7 +48,7 @@ class Form extends Component {
         <input
           type='text'
           className='date-input'
-          placeholder='Date'
+          placeholder='Month/Day'
           aria-label="name"
           name='date'
           value={this.state.date}
@@ -53,7 +72,7 @@ class Form extends Component {
           value={this.state.numberOfGuests}
           onChange={event => this.handleChange(event)}
         />
-        <button type='submit'>
+        <button type='submit' onClick={event => this.handleSubmit(event)}>
           Submit
         </button>
       </section>

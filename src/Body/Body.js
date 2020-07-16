@@ -3,7 +3,7 @@ import './Body.css'
 import ReservationCard from '../ReservationCard/ReservationCard.js'
 
 const Body = props => {
-  if (props.reservations) {
+  if (props.reservations.length) {
     const reservationCards = props.reservations.map(reservation => (
       <ReservationCard {...reservation}
         key={reservation.id}

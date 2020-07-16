@@ -8,20 +8,29 @@ class App extends Component {
   constructor() {
     super()
       this.state = {
-        reservations: null,
+        reservations: [],
         isLoading: false,
-        error: null
+        error: null,
+        finishedLoading: false
       }
   }
 
   componentDidMount() {
-    this.setState({ isLoading: true })
+    this.setState({ isLoading: true, finishedLoading: false })
       getReservations()
-        .then(data => this.setState({
-          reservations: data,
-          isLoading: false
-        })).catch(error => this.setState({error, isLoading: false}))
+        .then(data => {
+            this.setState({
+              reservations: data,
+              isLoading: false,
+              finishedLoading: true
+            })
+      }).catch(error => this.setState({error, isLoading: false}))
   }
+
+  renderSubmit = (newReservations) => {
+    this.setState({reservations: newReservations})
+  }
+
   render() {
     const { reservations, isLoading, error } = this.state
     if(isLoading) {
@@ -34,7 +43,7 @@ class App extends Component {
       <div className="App">
         <h1 className='app-title'>Turing Cafe Reservations</h1>
         <div className='resy-form'>
-          <Form />
+          <Form reservations={reservations} renderSubmit={this.renderSubmit}/>
         </div>
         <div className='resy-container'>
           <Body reservations={reservations} /> 
